@@ -8,7 +8,9 @@
 npm start
 ```
 
-本机未配置账号时，打开终端显示的 **一次性作者登录链接**。线上部署必须设置 `AUTHOR_USERNAME`、`AUTHOR_PASSWORD_HASH`、`PUBLIC_ORIGIN` 和持久化的 `DATA_DIR`。登录使用 HttpOnly、SameSite=Strict、HTTPS-only 会话，并对连续失败登录做 15 分钟限流。
+本机未配置账号时，打开终端显示的 **私密作者链接**。线上可以选择账号密码，或设置 `AUTHOR_PATH` 和 `AUTHOR_ACCESS_TOKEN` 使用不可猜测的私密链接。链接中的访问令牌放在 `#` 后，不会随普通网页请求、服务器日志或 Referer 发出；验证后会换成 HttpOnly、SameSite=Strict、HTTPS-only 会话。私密链接仍应像密码一样保存，不要转发或截图公开。
+
+线上部署还必须设置 `PUBLIC_ORIGIN` 和持久化的 `DATA_DIR`。`AUTHOR_PATH` 建议使用至少 32 个随机字符，`AUTHOR_ACCESS_TOKEN` 建议使用 64 个随机字符。若同时配置账号密码，工作台使用账号密码方式。
 
 在终端运行 `node scripts/hash-password.mjs` 生成密码哈希。只把输出的哈希放进托管平台的加密环境变量，不要把原始密码或 `.env` 提交到 GitHub。
 

@@ -5,8 +5,10 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 const ROOT=path.dirname(fileURLToPath(import.meta.url)),PRIVATE=path.resolve(process.env.DATA_DIR||path.join(ROOT,'.private'));
 const PORT=Number(process.env.PORT||4317),origin=(process.env.PUBLIC_ORIGIN||`http://127.0.0.1:${PORT}`).replace(/\/$/,''),remote=Boolean(process.env.PUBLIC_ORIGIN);
-const token=randomBytes(32).toString('hex'),session=randomBytes(32).toString('hex');let consumed=false,busy=false,mutationQueue=Promise.resolve();
+const token=process.env.AUTHOR_ACCESS_TOKEN||randomBytes(32).toString('hex'),session=randomBytes(32).toString('hex');let consumed=false,busy=false,mutationQueue=Promise.resolve();
 const authorName=process.env.AUTHOR_USERNAME||'',passwordHash=process.env.AUTHOR_PASSWORD_HASH||'',loginAttempts=new Map();
+const authorPath=(process.env.AUTHOR_PATH||'author').replace(/^\/+|\/+$/g,'');if(!/^[a-zA-Z0-9_-]{3,96}$/.test(authorPath))throw Error('AUTHOR_PATH 只能使用字母、数字、下划线和连字符');
+const authorBase=`/${authorPath}/`;
 const PUBLISHED=remote?path.join(PRIVATE,'published'):path.join(ROOT,'public');
 await fs.mkdir(path.join(PRIVATE,'originals'),{recursive:true,mode:0o700});
 await fs.mkdir(PUBLISHED,{recursive:true,mode:0o700});
@@ -24,7 +26,7 @@ const server=http.createServer(async(req,res)=>{res.setHeader('X-Content-Type-Op
 try{
  if(req.headers.host!==new URL(origin).host){res.writeHead(403);return res.end('Invalid host')}
  const url=new URL(req.url,origin),route=url.pathname;
- if(route==='/author/session'&&req.method==='POST'){
+ if(route===authorBase+'session'&&req.method==='POST'){
   if(req.headers.origin!==origin)throw Object.assign(Error('拒绝跨站请求'),{status:403});
   const ip=req.socket.remoteAddress||'unknown',record=loginAttempts.get(ip)||{count:0,until:0};
   if(record.until>Date.now())throw Object.assign(Error('尝试次数过多，请稍后再试'),{status:429});
@@ -34,9 +36,9 @@ try{
   if(!accepted){record.count++;if(record.count>=5){record.until=Date.now()+15*60_000;record.count=0}loginAttempts.set(ip,record);throw Object.assign(Error('账号或密码不正确'),{status:401})}
   loginAttempts.delete(ip);res.setHeader('Set-Cookie',`author=${session}; HttpOnly; SameSite=Strict; Path=/${remote?'; Secure':''}`);res.writeHead(204);return res.end();
  }
- if(route==='/author/login.js')return sendFile(res,path.join(ROOT,'admin/login.js'));
- if(route==='/author/'&&!authorized(req))return sendFile(res,path.join(ROOT,'admin/login.html'));
- if(route.startsWith('/api/')||route.startsWith('/originals/')||route.startsWith('/author/')){
+ if(route===authorBase+'login.js')return sendFile(res,path.join(ROOT,'admin/login.js'));
+ if(route===authorBase&&!authorized(req))return sendFile(res,path.join(ROOT,'admin/login.html'));
+ if(route.startsWith('/api/')||route.startsWith('/originals/')||route.startsWith(authorBase)){
   if(!authorized(req))throw Object.assign(Error('请先登录作者账号'),{status:401});
   if(!['GET','HEAD'].includes(req.method)&&req.headers.origin!==origin)throw Object.assign(Error('拒绝跨站请求'),{status:403});
  }
@@ -61,9 +63,9 @@ try{
   }finally{busy=false}return;
  }
  if(route.startsWith('/originals/')){const name=route.slice(11);if(!/^[a-f0-9-]+\.(jpg|png|webp)$/.test(name))throw Error('无效路径');return sendFile(res,path.join(PRIVATE,'originals',name))}
- if(route.startsWith('/author/')){const name=route==='/author/'?'index.html':route.slice(8);if(!['index.html','admin.js','admin.css'].includes(name))throw Object.assign(Error('Not found'),{status:404});return sendFile(res,path.join(ROOT,'admin',name))}
+ if(route.startsWith(authorBase)){const name=route===authorBase?'index.html':route.slice(authorBase.length);if(!['index.html','admin.js','admin.css'].includes(name))throw Object.assign(Error('Not found'),{status:404});return sendFile(res,path.join(ROOT,'admin',name))}
  if(req.method!=='GET'&&req.method!=='HEAD')throw Object.assign(Error('Method not allowed'),{status:405});
  if(remote&&(route==='/book.json'||route.startsWith('/images/'))){const published=path.resolve(PUBLISHED,'.'+route);if(!published.startsWith(PUBLISHED+path.sep))throw Object.assign(Error('Forbidden'),{status:403});try{await fs.access(published);return sendFile(res,published)}catch(e){if(e.code!=='ENOENT')throw e}}
  const rel=decodeURIComponent(route==='/'?'/index.html':route);const file=path.resolve(ROOT,'public','.'+rel);if(!file.startsWith(path.join(ROOT,'public')+path.sep))throw Object.assign(Error('Forbidden'),{status:403});return sendFile(res,file);
 }catch(e){if(!res.headersSent){res.writeHead(e.status||400,{'Content-Type':'application/json'});res.end(JSON.stringify({error:e.message}))}else res.end()}});
-server.listen(PORT,remote?'0.0.0.0':'127.0.0.1',()=>{console.log(`游客预览：${origin}/`);if(passwordHash)console.log(`作者工作台：${origin}/author/`);else console.log(`作者工作台（本次启动的一次性登录链接）：${origin}/author/#${token}`)});
+server.listen(PORT,remote?'0.0.0.0':'127.0.0.1',()=>{console.log(`游客预览：${origin}/`);if(passwordHash)console.log(`作者工作台：${origin}${authorBase}`);else console.log(`作者工作台（私密链接）：${origin}${authorBase}#${token}`)});

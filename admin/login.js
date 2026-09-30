@@ -1,4 +1,4 @@
 const form=document.querySelector('#login-form'),message=document.querySelector('#message');
-async function login(body){const r=await fetch('/author/session',{method:'POST',headers:typeof body==='string'?{}:{'Content-Type':'application/json'},body:typeof body==='string'?body:JSON.stringify(body)});if(!r.ok)throw Error((await r.json()).error);location.reload()}
+async function login(body){const r=await fetch('./session',{method:'POST',headers:typeof body==='string'?{}:{'Content-Type':'application/json'},body:typeof body==='string'?body:JSON.stringify(body)});if(!r.ok)throw Error((await r.json()).error);location.reload()}
 form.addEventListener('submit',async e=>{e.preventDefault();message.textContent='正在登录…';const data=new FormData(form);try{await login({username:data.get('username'),password:data.get('password')})}catch(error){message.textContent=error.message}});
 const token=location.hash.slice(1);if(token){history.replaceState(null,'',location.pathname);form.hidden=true;login(token).catch(error=>{form.hidden=false;message.textContent=error.message})}
