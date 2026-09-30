@@ -1,4 +1,29 @@
 {
   "title": "来过之地",
-  "pages": []
+  "pages": [
+    {
+      "type": "photo",
+      "title": "",
+      "location": "新疆 禾木村",
+      "date": " 2026 06",
+      "film": "Kodak Ultramax 400",
+      "format": "",
+      "description": "",
+      "size": "large",
+      "ratio": 1.5,
+      "image": "./images/64079649-dee8-4965-b2f4-32407d0ecf19/0.jpg"
+    },
+    {
+      "type": "photo",
+      "title": "",
+      "location": "新疆 赛里木湖",
+      "date": "2026 06",
+      "film": "Kodak Ultramax 400",
+      "format": "",
+      "description": "",
+      "size": "large",
+      "ratio": 1.5080142475512022,
+      "image": "./images/64079649-dee8-4965-b2f4-32407d0ecf19/1.jpg"
+    }
+  ]
 }
