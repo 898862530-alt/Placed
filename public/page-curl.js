@@ -39,7 +39,7 @@ export function animateSheet(spread,frontPage,backPage,direction){
    const angle=Math.atan2(state.n.y,state.n.x)*180/Math.PI+90;
    const center=state.n.x*w/2+state.n.y*h/2,stop=state.d-center+(Math.abs(state.n.x)*w+Math.abs(state.n.y)*h)/2;
    sheen.style.background=`linear-gradient(${angle}deg,transparent ${stop-1}px,rgba(64,57,40,${.18*lift}) ${stop+1}px,rgba(255,255,255,${.3*lift}) ${stop+25}px,transparent ${stop+85}px)`;
-   if(t<1)requestAnimationFrame(frame);else{layer.remove();resolve()}
+   if(t<1)requestAnimationFrame(frame);else resolve();
   }frame(start);
  });
 }

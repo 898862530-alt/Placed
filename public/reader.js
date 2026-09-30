@@ -2,7 +2,7 @@ import {pageMarkup,esc,imageSizes} from './layout.js';
 import {animateSheet} from './page-curl.js';
 const $=s=>document.querySelector(s);let book,at=0,zoom=1,pan={x:0,y:0},down,lastFocus,turning=false;
 const spread=$('#spread'),lb=$('#lightbox'),image=$('#detail-image');
-function render(){const pages=book.pages;spread.innerHTML=pageMarkup(pages[at],at)+pageMarkup(pages[at+1],at+1);$('#page-count').textContent=`${String(at+1).padStart(2,'0')} — ${String(Math.min(at+2,pages.length)).padStart(2,'0')} / ${String(pages.length).padStart(2,'0')}`;$('#prev').disabled=at===0;$('#next').disabled=at+2>=pages.length;$('#chapter-label').textContent=pages.slice(0,at+2).findLast(p=>p.type==='chapter')?.title||book.title;}
+function render(replace=true){const pages=book.pages;if(replace)spread.innerHTML=pageMarkup(pages[at],at)+pageMarkup(pages[at+1],at+1);$('#page-count').textContent=`${String(at+1).padStart(2,'0')} — ${String(Math.min(at+2,pages.length)).padStart(2,'0')} / ${String(pages.length).padStart(2,'0')}`;$('#prev').disabled=at===0;$('#next').disabled=at+2>=pages.length;$('#chapter-label').textContent=pages.slice(0,at+2).findLast(p=>p.type==='chapter')?.title||book.title;}
 function pageElement(index){const holder=document.createElement('div');holder.innerHTML=pageMarkup(book.pages[index],index);return holder.firstElementChild}
 async function ready(root){await Promise.all([...root.querySelectorAll('img')].map(img=>img.decode().catch(()=>{})))}
 async function navigate(next,direction){
@@ -15,7 +15,10 @@ async function navigate(next,direction){
    spread.children[direction>0?1:0].replaceWith(under);
    await animateSheet(spread,front,back,direction);
   }
-  at=next;render();preload();
+  // Adopt already decoded faces. Never recreate images at the landing frame.
+  back.removeAttribute('style');back.classList.remove('sheet-content');
+  spread.replaceChildren(...(direction>0?[back,under]:[under,back]));
+  at=next;render(false);preload();
  }finally{turning=false;spread.removeAttribute('aria-busy')}
 }
 const prefetched=new Set();

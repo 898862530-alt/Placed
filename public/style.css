@@ -36,7 +36,7 @@
 
 /* Every optical layer is clipped to the moving sheet, in the same coordinates. */
 .spread{isolation:isolate}
-.sheet-layer{position:absolute;inset:0;z-index:10;pointer-events:none;overflow:hidden}
+.sheet-layer{position:absolute;inset:0;z-index:10;pointer-events:none;overflow:visible}
 .sheet-space{position:absolute;top:0;left:0;transform-origin:0 0}
 .sheet-front,.sheet-back,.sheet-shadow,.sheet-reverse,.sheet-sheen{position:absolute;inset:0;transform-origin:0 0}
 .sheet-front,.sheet-back{will-change:clip-path,transform;overflow:hidden}
@@ -45,3 +45,15 @@
 .sheet-shadow{background:#3b3529;will-change:clip-path,opacity}
 .sheet-sheen{pointer-events:none}
 .spread[aria-busy=true] .photo-frame{pointer-events:none}
+.spread>.page+.page{border:0;box-shadow:none}
+.spread::after{content:"";position:absolute;left:50%;top:0;width:1px;height:100%;background:#d9d8d1;pointer-events:none;z-index:1}
+/* Percentage padding used to resolve against two different containing blocks
+   during a turn. Keep the page content box identical on every layer. */
+.text-page{padding:0}
+.text-page .text-block{width:60%;max-height:80%}
+.text-page.editorial .text-block{margin-left:20%;margin-right:20%}
+.text-page.bottom .text-block{margin-bottom:20%}
+.text-page h2{font-size:clamp(18px,3.3cqw,38px)}
+.text-page p{font-size:clamp(9px,1.38cqw,16px)}
+.chapter-kicker{font-size:clamp(8px,.9cqw,12px)}
+@media(max-aspect-ratio:1.4142/1){.spread::after{left:0;top:50%;width:100%;height:1px}}
