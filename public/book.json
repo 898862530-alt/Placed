@@ -2,28 +2,77 @@
   "title": "来过之地",
   "pages": [
     {
-      "type": "photo",
+      "type": "text",
+      "title": "来过之地",
+      "text": "Places, Once Here.",
+      "template": "center"
+    },
+    {
+      "type": "text",
       "title": "",
-      "location": "新疆 禾木村",
-      "date": " 2026 06",
-      "film": "Kodak Ultramax 400",
-      "format": "",
-      "description": "",
-      "size": "large",
-      "ratio": 1.5,
-      "image": "./images/518c8f5f-638a-4472-a3a3-acd210349407/0.jpg"
+      "text": "",
+      "template": "center"
+    },
+    {
+      "type": "chapter",
+      "title": "新 疆",
+      "text": "",
+      "template": "center",
+      "chapter": 1
     },
     {
       "type": "photo",
       "title": "",
-      "location": "新疆 赛里木湖",
+      "location": " 那拉提",
       "date": "2026 06",
       "film": "Kodak Ultramax 400",
       "format": "",
       "description": "",
       "size": "large",
       "ratio": 1.5080142475512022,
-      "image": "./images/518c8f5f-638a-4472-a3a3-acd210349407/1.jpg"
+      "image": "./images/d0467db2-d75b-4f50-bc0d-45f56bd1d357/3.jpg"
+    },
+    {
+      "type": "photo",
+      "title": "",
+      "location": "禾木村",
+      "date": " 2026 06",
+      "film": "Kodak Ultramax 400",
+      "format": "",
+      "description": "",
+      "size": "large",
+      "ratio": 1.5,
+      "image": "./images/d0467db2-d75b-4f50-bc0d-45f56bd1d357/4.jpg"
+    },
+    {
+      "type": "photo",
+      "title": "",
+      "location": "赛里木湖",
+      "date": "2026 06",
+      "film": "Kodak Ultramax 400",
+      "format": "",
+      "description": "",
+      "size": "large",
+      "ratio": 1.5080142475512022,
+      "image": "./images/d0467db2-d75b-4f50-bc0d-45f56bd1d357/5.jpg"
+    },
+    {
+      "type": "text",
+      "title": "",
+      "text": "天空真蓝",
+      "template": "editorial"
+    },
+    {
+      "type": "photo",
+      "title": "",
+      "location": "",
+      "date": "",
+      "film": "",
+      "format": "",
+      "description": "",
+      "size": "medium",
+      "ratio": 1.5080142475512022,
+      "image": "./images/d0467db2-d75b-4f50-bc0d-45f56bd1d357/7.jpg"
     }
   ]
 }
