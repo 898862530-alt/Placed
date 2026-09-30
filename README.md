@@ -1,2 +1,46 @@
-# Placed
-this is ocean's first personal photograph file , intended to discuss the connection between Chinese people and the new env, now it's a demo.  
+# 来过之地
+
+一本安静的线上摄影集，以及只在作者电脑上运行的排版工作台。无第三方运行依赖，Node.js 22 或更新版本即可运行。
+
+## 打开作者端
+
+```sh
+npm start
+```
+
+打开终端显示的 **一次性作者登录链接**。工作台只监听 `127.0.0.1`，不接受局域网或公网连接。每次重启会产生新登录链接，登录后使用 HttpOnly / SameSite=Strict 会话。请保管自己的电脑账户，不要分享登录链接，也不要将此服务通过代理或隧道公开。
+
+原图支持 JPEG、PNG、WebP，每张最大 100 MB。TIFF / HEIC 请先转换；原始文件不修改。草稿和素材位于 `.private/`，不会提交到 GitHub。请备份整个 `.private` 文件夹以保存原图及排版。
+
+左上导入并点击素材添加照片，左下选择页面，中间预览，右侧填写信息、选择尺寸与裁切比例。支持拖动照片或滑块控制裁切区域。文字留空时不占用图注空间。白页和章节提供居中、左对齐、左下角三个模板。
+
+## 发布
+
+1. 作者端点击「生成发布版」，将裁切后照片导出到 `public/images/`，更新 `public/book.json`。图像最长边上限 3200 像素，不放大低分辨率原图；Canvas 导出不携带原图 EXIF。
+2. 点击「预览发布版」检查。
+3. 将项目推送到自己的 GitHub 仓库 `main` 分支，在仓库 Settings → Pages 将 Source 设为 GitHub Actions。
+4. 已附带的工作流只上传 `public/`，不上传工作台、原图和草稿。
+
+更新发布：提交并推送 `public/`，GitHub Actions 会自动部署。
+
+```sh
+git add public
+git commit -m "Update photographic journal"
+git push origin main
+```
+
+生成发布版是本地操作，不会自动推送 GitHub。旧发布图像保留，避免正在阅读的旧页面加载失败；照片一旦发布到公开 GitHub 仓库，即使删除页面，也可能保留在 Git 历史中。
+
+## 阅读
+
+单页保持横向 A4 比例。设备视口比例大于 1.4142 时显示左右两页，否则显示上下两页。每次翻动两页，奇数页尾补白。点击照片进入完整适应屏幕的细读视图；点击图像放大 / 还原，或用加减控制，放大后拖动。关闭细读后才能翻页。支持方向键、触摸滑动、目录与减少动态效果偏好。
+
+大、中、小指图片在纸面可用构图区中的视觉尺寸。极宽或极高的照片为了完整显示与保持比例，其面积占比会低于相同宽度的常规画幅。
+
+## 检查
+
+```sh
+npm test
+```
+
+初始公开页面是待整理的空摄影集，没有代替作者作品的示例照片。
