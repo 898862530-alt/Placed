@@ -1,5 +1,6 @@
 {
   "title": "来过之地",
+  "version": "20260930T091800-c13819b6",
   "pages": [
     {
       "type": "text",
@@ -24,55 +25,262 @@
       "type": "photo",
       "title": "",
       "location": " 那拉提",
-      "date": "2026 06",
+      "date": "2026-06",
       "film": "Kodak Ultramax 400",
       "format": "",
       "description": "",
-      "size": "large",
-      "ratio": 1.5080142475512022,
-      "image": "./images/d0467db2-d75b-4f50-bc0d-45f56bd1d357/3.jpg"
-    },
-    {
-      "type": "photo",
-      "title": "",
-      "location": "禾木村",
-      "date": " 2026 06",
-      "film": "Kodak Ultramax 400",
-      "format": "",
-      "description": "",
-      "size": "large",
+      "size": "fill",
       "ratio": 1.5,
-      "image": "./images/d0467db2-d75b-4f50-bc0d-45f56bd1d357/4.jpg"
+      "variants": [
+        {
+          "url": "./images/12c82ccefb27e78ecd09a988/read-480.webp",
+          "width": 480
+        },
+        {
+          "url": "./images/12c82ccefb27e78ecd09a988/read-787.webp",
+          "width": 787
+        },
+        {
+          "url": "./images/12c82ccefb27e78ecd09a988/read-960.webp",
+          "width": 960
+        },
+        {
+          "url": "./images/12c82ccefb27e78ecd09a988/read-1049.webp",
+          "width": 1049
+        },
+        {
+          "url": "./images/12c82ccefb27e78ecd09a988/read-1573.webp",
+          "width": 1573
+        },
+        {
+          "url": "./images/12c82ccefb27e78ecd09a988/read-2097.webp",
+          "width": 2097
+        }
+      ],
+      "image": "./images/12c82ccefb27e78ecd09a988/read-960.webp",
+      "detail": "./images/12c82ccefb27e78ecd09a988/detail.jpg",
+      "width": 6738,
+      "height": 4492,
+      "detailWidth": 6000,
+      "detailHeight": 4000
     },
     {
       "type": "photo",
       "title": "",
       "location": "赛里木湖",
-      "date": "2026 06",
+      "date": "2026-06",
+      "film": "Kodak Ultramax 400",
+      "format": "",
+      "description": "",
+      "size": "fill",
+      "ratio": 1.5080142475512022,
+      "variants": [
+        {
+          "url": "./images/45c3fa04d2bfd272f8ca98b3/read-480.webp",
+          "width": 480
+        },
+        {
+          "url": "./images/45c3fa04d2bfd272f8ca98b3/read-787.webp",
+          "width": 787
+        },
+        {
+          "url": "./images/45c3fa04d2bfd272f8ca98b3/read-960.webp",
+          "width": 960
+        },
+        {
+          "url": "./images/45c3fa04d2bfd272f8ca98b3/read-1049.webp",
+          "width": 1049
+        },
+        {
+          "url": "./images/45c3fa04d2bfd272f8ca98b3/read-1573.webp",
+          "width": 1573
+        },
+        {
+          "url": "./images/45c3fa04d2bfd272f8ca98b3/read-2097.webp",
+          "width": 2097
+        }
+      ],
+      "image": "./images/45c3fa04d2bfd272f8ca98b3/read-960.webp",
+      "detail": "./images/45c3fa04d2bfd272f8ca98b3/detail.jpg",
+      "width": 6774,
+      "height": 4492,
+      "detailWidth": 6000,
+      "detailHeight": 3979
+    },
+    {
+      "type": "photo",
+      "title": "",
+      "location": "那拉提",
+      "date": "2026-06",
+      "film": "Kodak Ultramax 400",
+      "format": "",
+      "description": "",
+      "size": "medium",
+      "ratio": 1.5,
+      "variants": [
+        {
+          "url": "./images/25d38f4d9daa88cfe8d99024/read-472.webp",
+          "width": 472
+        },
+        {
+          "url": "./images/25d38f4d9daa88cfe8d99024/read-480.webp",
+          "width": 480
+        },
+        {
+          "url": "./images/25d38f4d9daa88cfe8d99024/read-629.webp",
+          "width": 629
+        },
+        {
+          "url": "./images/25d38f4d9daa88cfe8d99024/read-944.webp",
+          "width": 944
+        },
+        {
+          "url": "./images/25d38f4d9daa88cfe8d99024/read-960.webp",
+          "width": 960
+        },
+        {
+          "url": "./images/25d38f4d9daa88cfe8d99024/read-1258.webp",
+          "width": 1258
+        }
+      ],
+      "image": "./images/25d38f4d9daa88cfe8d99024/read-960.webp",
+      "detail": "./images/25d38f4d9daa88cfe8d99024/detail.jpg",
+      "width": 6070,
+      "height": 4046,
+      "detailWidth": 6000,
+      "detailHeight": 3999
+    },
+    {
+      "type": "photo",
+      "title": "",
+      "location": "飞鱼台",
+      "date": "2026-06",
       "film": "Kodak Ultramax 400",
       "format": "",
       "description": "",
       "size": "large",
       "ratio": 1.5080142475512022,
-      "image": "./images/d0467db2-d75b-4f50-bc0d-45f56bd1d357/5.jpg"
-    },
-    {
-      "type": "text",
-      "title": "",
-      "text": "天空真蓝",
-      "template": "editorial"
+      "variants": [
+        {
+          "url": "./images/6f98c7f83852c626ea9ef428/read-480.webp",
+          "width": 480
+        },
+        {
+          "url": "./images/6f98c7f83852c626ea9ef428/read-669.webp",
+          "width": 669
+        },
+        {
+          "url": "./images/6f98c7f83852c626ea9ef428/read-892.webp",
+          "width": 892
+        },
+        {
+          "url": "./images/6f98c7f83852c626ea9ef428/read-960.webp",
+          "width": 960
+        },
+        {
+          "url": "./images/6f98c7f83852c626ea9ef428/read-1337.webp",
+          "width": 1337
+        },
+        {
+          "url": "./images/6f98c7f83852c626ea9ef428/read-1783.webp",
+          "width": 1783
+        }
+      ],
+      "image": "./images/6f98c7f83852c626ea9ef428/read-960.webp",
+      "detail": "./images/6f98c7f83852c626ea9ef428/detail.jpg",
+      "width": 6774,
+      "height": 4492,
+      "detailWidth": 6000,
+      "detailHeight": 3979
     },
     {
       "type": "photo",
       "title": "",
-      "location": "",
-      "date": "",
-      "film": "",
+      "location": "禾木村",
+      "date": "2026-06",
+      "film": "Kodak Ultramax 400",
       "format": "",
       "description": "",
-      "size": "medium",
-      "ratio": 1.5080142475512022,
-      "image": "./images/d0467db2-d75b-4f50-bc0d-45f56bd1d357/7.jpg"
+      "size": "large",
+      "ratio": 1.5,
+      "variants": [
+        {
+          "url": "./images/56ac479523495c8eaa914f82/read-480.webp",
+          "width": 480
+        },
+        {
+          "url": "./images/56ac479523495c8eaa914f82/read-669.webp",
+          "width": 669
+        },
+        {
+          "url": "./images/56ac479523495c8eaa914f82/read-892.webp",
+          "width": 892
+        },
+        {
+          "url": "./images/56ac479523495c8eaa914f82/read-960.webp",
+          "width": 960
+        },
+        {
+          "url": "./images/56ac479523495c8eaa914f82/read-1337.webp",
+          "width": 1337
+        },
+        {
+          "url": "./images/56ac479523495c8eaa914f82/read-1783.webp",
+          "width": 1783
+        }
+      ],
+      "image": "./images/56ac479523495c8eaa914f82/read-960.webp",
+      "detail": "./images/56ac479523495c8eaa914f82/detail.jpg",
+      "width": 6738,
+      "height": 4492,
+      "detailWidth": 6000,
+      "detailHeight": 4000
+    },
+    {
+      "type": "chapter",
+      "title": "东 北",
+      "text": "",
+      "template": "center",
+      "chapter": 2
+    },
+    {
+      "type": "text",
+      "title": "",
+      "text": "",
+      "template": "center"
+    },
+    {
+      "type": "chapter",
+      "title": "山西",
+      "text": "",
+      "template": "center",
+      "chapter": 3
+    },
+    {
+      "type": "text",
+      "title": "",
+      "text": "",
+      "template": "center"
+    },
+    {
+      "type": "chapter",
+      "title": "深 圳",
+      "text": "",
+      "template": "center",
+      "chapter": 4
+    },
+    {
+      "type": "text",
+      "title": "",
+      "text": "",
+      "template": "center"
+    },
+    {
+      "type": "chapter",
+      "title": "惠 安",
+      "text": "",
+      "template": "center",
+      "chapter": 5
     }
   ]
 }

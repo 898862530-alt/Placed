@@ -3,3 +3,45 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 
 .photo-description{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.photo-title,.photo-meta{max-width:100%;overflow-wrap:anywhere}
+
+/* 图片在统一的最大展示区域内按比例完整显示，宽或高至少一边贴合边界。 */
+.photo-area{height:87%;padding:2.5% 4% 0}
+.photo-frame{width:var(--large-w);height:var(--large-h);max-width:none;max-height:none}
+.photo-frame.size-fill{width:var(--fill-w);height:var(--fill-h)}
+.photo-frame.size-medium{width:var(--medium-w);height:var(--medium-h)}
+.photo-frame.size-small{width:var(--small-w);height:var(--small-h)}
+.caption{height:9%;padding-top:1%}
+
+/* 英文与数字统一使用无衬线字体，保持干净的编辑与阅读氛围。 */
+:root,button,input,select,textarea{font-family:Arial,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+.wordmark,.wordmark span,.photo-title,.text-page h2,.text-page p,.folio,#page-count,.chapter-kicker{font-family:Arial,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif}
+
+/* 基准展示框为 90 × 60 的 3:2 区域，三个尺寸按 85%、60%、30% 缩放。 */
+.photo-area{height:100%;padding:0 5%;align-items:center;justify-content:center}
+.caption{position:absolute;left:5%;right:5%;top:calc(50% + 30cqw + .8cqw);bottom:auto;height:auto;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:8%;align-items:start;font-size:clamp(7px,1.45cqw,12px);line-height:1.45}
+.caption-details{display:flex;min-width:0;flex-direction:column;gap:1px;font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-weight:300;letter-spacing:.06em}
+.page-odd .caption-details{grid-column:1;text-align:left;align-items:flex-start}
+.page-odd .photo-title{grid-column:2;grid-row:1;text-align:right;justify-self:end}
+.page-even .photo-title{grid-column:1;grid-row:1;text-align:left;justify-self:start}
+.page-even .caption-details{grid-column:2;text-align:right;align-items:flex-end}
+.photo-title,.photo-meta,.photo-description{max-width:100%;overflow-wrap:anywhere}
+.photo-title{letter-spacing:.1em}
+.photo-description{-webkit-line-clamp:1}
+.folio{top:50%;bottom:auto;transform:translateY(-50%);font-family:"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-weight:300;letter-spacing:.08em}
+.page-odd .folio{left:1.4%;right:auto;text-align:left}
+.page-even .folio{left:auto;right:1.4%;text-align:right}
+.no-folio .folio{display:none}
+.zh-title,.wordmark{font-family:"Songti SC","STSong","SimSun",serif;font-weight:700}
+.wordmark span{font-family:Arial,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;font-weight:400}
+
+/* Every optical layer is clipped to the moving sheet, in the same coordinates. */
+.spread{isolation:isolate}
+.sheet-layer{position:absolute;inset:0;z-index:10;pointer-events:none;overflow:hidden}
+.sheet-space{position:absolute;top:0;left:0;transform-origin:0 0}
+.sheet-front,.sheet-back,.sheet-shadow,.sheet-reverse,.sheet-sheen{position:absolute;inset:0;transform-origin:0 0}
+.sheet-front,.sheet-back{will-change:clip-path,transform;overflow:hidden}
+.sheet-back{filter:drop-shadow(0 1px 1px #302d2520)}
+.sheet-content.page{position:absolute;left:0;top:0;border:0;box-shadow:none;margin:0;aspect-ratio:auto}
+.sheet-shadow{background:#3b3529;will-change:clip-path,opacity}
+.sheet-sheen{pointer-events:none}
+.spread[aria-busy=true] .photo-frame{pointer-events:none}
