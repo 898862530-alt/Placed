@@ -2,3 +2,11 @@
 node_modules/
 .DS_Store
 *.log
+admin/
+scripts/
+tests/
+.env.example
+Dockerfile
+package.json
+server.mjs
+打开作者工作台.command
