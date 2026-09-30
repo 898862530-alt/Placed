@@ -1,0 +1,1 @@
+(async()=>{const token=location.hash.slice(1);history.replaceState(null,'',location.pathname);if(!token){document.querySelector('#message').textContent='需要作者身份';return}try{const r=await fetch('/author/session',{method:'POST',body:token});if(!r.ok)throw Error((await r.json()).error);location.reload()}catch(e){document.querySelector('#message').textContent=e.message}})();
